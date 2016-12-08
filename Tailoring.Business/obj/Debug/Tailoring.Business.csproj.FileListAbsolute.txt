@@ -1,0 +1,11 @@
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Business.dll
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Business.pdb
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\obj\Debug\Tailoring.Business.csprojResolveAssemblyReference.cache
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\obj\Debug\Tailoring.Business.dll
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\obj\Debug\Tailoring.Business.pdb
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Data.dll
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Models.dll
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\EntityFramework.dll
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Data.pdb
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\Tailoring.Models.pdb
+C:\Users\vishal\Dropbox\Source Code\Tailoring\Tailoring.Business\bin\Debug\EntityFramework.xml

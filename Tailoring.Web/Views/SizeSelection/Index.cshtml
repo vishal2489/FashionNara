@@ -1,0 +1,129 @@
+﻿@model IList<Tailoring.Web.Models.UserSizeSlection>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Index</h2>
+<style>
+    .selected {
+        box-shadow: 0px 12px 22px 1px #333;
+        border: solid 1px red;
+    }
+
+    div.current {
+        display: block;
+        border: 1px solid red;
+    }
+
+    .clickimg {
+        width: 45px;
+        margin-top: -45px;
+        margin-left: 20px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("img").click(function () {
+            $('.selected').removeClass('selected'); // removes the previous selected class
+            $(this).addClass('selected'); // adds the class to the clicked image
+            $('input[name="' + this.name.replace('Id', 'IsSelected') + '"]').attr('checked', 'checked');
+        });
+
+        $("a.navigation").click(function () {
+            $('.productOption').hide();
+            $('#' + this.name).show();
+        });
+        // $("div.productOption").first().addClass('current').show();
+        //$("#next").click(function () {
+        //    $('.productOption').hide();
+        //    $("div.productOption").next().show();
+        //});
+        //$("#back").click(function () {
+        //    $('.productOption').hide();
+        //    $("div.productOption").before().show();
+        //});
+        //function updateItems(delta) {
+        //    debugger;
+        //    var $items = $('.productoptionlist').children('div');
+        //    var $current = $items.filter('.selected');
+        //    $current = $current.length ? $current : $items.first();
+        //    var index = $current.index() + delta;
+        //    // Range check the new index
+        //    index = (index < 0) ? 0 : ((index > $items.length) ? $items.length : index);
+        //    $current.removeClass('selected');
+        //    $current = $items.eq(index).addClass('selected');
+        //    // Hide/show the next/prev
+        //    $("#back").toggle(!$current.is($items.first()));
+        //    $("#next").toggle(!$current.is($items.last()));
+        //}
+        //$("#next").click(function () {
+        //    updateitems(1);
+        //});
+        //$("#back").click(function () {
+        //    updateitems(-1);
+        //});
+        //// cause initial selection
+        //updateitems(0);
+    });
+</script>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+
+    @foreach (var item in Model) {
+        <div class="col-md-2 ">
+            <a class="navigation" name=@item.Description href="#">@Html.DisplayFor(modelItem => item.Description)</a>
+
+        </div>
+    }
+</div>
+
+@using (Html.BeginForm()) {
+
+    <div class="row comp-stage-data-list productoptionlist" style="margin:0px;">
+        <center>
+            @for (int j = 0; j < Model.Count; j++) {
+                @Html.HiddenFor(m => m[j].Id)
+                @Html.HiddenFor(m => m[j].ProductId)
+                @Html.HiddenFor(m => m[j].SortOrder)
+                <div id=@Model[j].Description class="col-xs-12 col-sm-12 col-md-12 col-lg-10 productOption" >
+                    <div class="row comp-stage-data" >
+
+                        @for (int i = 0; i < Model[j].ProductOptions.Count(); i++) {
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 padding image-height">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 product_p comp-data" style="text-align:center;font-family:Montserrat;">
+                                    <a href="#">
+                                        <img class="click_img" style="width:100%; height:auto;" name="[@j].ProductOptions[@i].Id" src=@Model[j].ProductOptions[i].ImageUrl alt="Generic placeholder image">
+                                        @Html.HiddenFor(m => m[j].ProductOptions[i].Id)
+                                        @Html.CheckBoxFor(m => m[j].ProductOptions[i].IsSelected, new { style = "display:none", id = "[" + j + "].ProductOptions[" + i + "].IsSelected" })
+                                    </a>
+                                    <div class="clickimg" data-id=@Model[j].ProductOptions[i].Id style="display:none">
+                                        <img style="border:none" src="/Resources/Images/select_itm.png">
+                                    </div>
+                                    <div class="row">
+                                        <h4 style="font-size: 14px;  font-family: Open Sans;">@Model[j].ProductOptions[i].Description</h4>
+                                    </div>
+                                    <div class="row" style="color:#ff7e82;">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </center>
+    </div>
+    <button type="submit">Submit</button>
+}
+<div class="container-fluid fixed_footer" style="background:url(resources/images/divdr_bg.jpg) repeat;">
+    <div style="text-align:center;" class="footer_abov">
+        <center>
+            <a id="back" href="#" class="btn btn-warning customisation-back" style="text-transform:uppercase;">&lt; Back</a>
+            <a id="next" href="#" class="btn btn-warning customisation-next" style="text-transform:uppercase;">Next &gt;</a>
+        </center>
+    </div>
+</div>

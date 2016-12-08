@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Tailoring.Models.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+@foreach (Tailoring.Models.Product item in Model) {
+    <div class="row">
+        <div class="col-md-4">
+            <h2>@item.Description</h2>
+            <a href="SizeSelection/Index?productId=@item.Id.ToString()">
+                <img id=@item.Id.ToString() src=@item.ImageUrl alt="Alternate Text" />
+            </a>
+        </div>
+    </div>
+}
