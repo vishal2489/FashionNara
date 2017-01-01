@@ -13,11 +13,13 @@ namespace Tailoring.Data {
         private IMongoDatabase _database;
         private IMongoClient _client;
         private IMongoCollection<TEntity> _collection;
-        private const string DATABASENAME = "TailorDb";
+        private const string DATABASENAME = "tailordb";
+        //private const string CLOUDCONNECTIONSTRING = "mongodb://testuser:testuser@ds048319.mlab.com:48319/tailordb?connecttimeout=60000&maxconnectionlifetime=60000&sockettimeout=60000";
         private const string CLOUDCONNECTIONSTRING = "mongodb://testuser:testuser@ds048319.mlab.com:48319/tailordb";
         private const string LOCALCONNECTIONSTRING = "mongodb://localhost";
         public MongoDbRepository() {
-            _client = new MongoClient(LOCALCONNECTIONSTRING);
+            _client = new MongoClient(CLOUDCONNECTIONSTRING);
+
             _database = _client.GetDatabase(DATABASENAME);
             _collection = this._database.GetCollection<TEntity>(typeof(TEntity).Name);
         }

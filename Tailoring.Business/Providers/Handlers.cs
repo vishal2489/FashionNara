@@ -17,11 +17,12 @@ namespace Tailoring.Domain.Providers {
         }
 
         public IEnumerable<TEntity> GetAll() {
-          return  _repository.GetAll();
+            return _repository.GetAll();
         }
 
+
         public void Insert(TEntity entity) {
-             _repository.Insert(entity);
+            _repository.Insert(entity);
         }
 
         public TEntity Save(TEntity entity) {

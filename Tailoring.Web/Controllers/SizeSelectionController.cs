@@ -20,12 +20,16 @@ namespace Tailoring.Web.Controllers {
         // GET: Product
         public ActionResult Index(string productId) {
             ObjectId id = new ObjectId(productId);
+            // Session["SelectedProduct"] = _navigation.Products.Find(x => x.Id == id);
             _userSession.SelectedProduct = _navigation.Products.Find(x => x.Id == id);
+            _userSession.CurrentRequestOrder.Product = _navigation.Products.Find(x => x.Id == id);
+            Session["userSession"] = _userSession;
             return View(_navigation.ProductOptions.Where(X => X.ProductId == id).ToList());
         }
         [HttpPost]
         public ActionResult Index([ModelBinder(typeof(SizeSelectionBinder))]List<ProductOption> collection) {
-            _userSession.CurrentRequestOrder.Product = _userSession.SelectedProduct;
+            _userSession = (IUserSession)Session["userSession"];
+           // _userSession.CurrentRequestOrder.Product =  //_userSession.SelectedProduct;
             _userSession.CurrentRequestOrder.ProductOptions = collection;
             //_userSession.CurrentRequestOrder.ProductOptions = collection.
             return View();
