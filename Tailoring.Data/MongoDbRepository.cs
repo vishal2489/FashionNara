@@ -18,7 +18,7 @@ namespace Tailoring.Data {
         private const string CLOUDCONNECTIONSTRING = "mongodb://testuser:testuser@ds048319.mlab.com:48319/tailordb";
         private const string LOCALCONNECTIONSTRING = "mongodb://localhost";
         public MongoDbRepository() {
-            _client = new MongoClient(CLOUDCONNECTIONSTRING);
+            _client = new MongoClient(LOCALCONNECTIONSTRING);
 
             _database = _client.GetDatabase(DATABASENAME);
             _collection = this._database.GetCollection<TEntity>(typeof(TEntity).Name);
@@ -76,64 +76,3 @@ namespace Tailoring.Data {
         TEntity Save(TEntity entity);
     }
 }
-
-//public class LocalDbProvider: MongoClient {
-
-//    protected static IMongoClient _client;
-//    protected static IMongoDatabase _database;
-
-//    public ICluster Cluster {
-//        get {
-//            throw new NotImplementedException();
-//        }
-//    }
-
-//    public MongoClientSettings Settings {
-//        get {
-//            return new MongoClientSettings() { };
-//        }
-//    }
-
-//    public void CrateProduct(Product product) {
-
-//        try {
-//            //_client = new MongoClient($"mongodb://testuser:testuser@ds048319.mlab.com:48319/tailordb");
-//            _client = new MongoClient($"mongodb://localhost");
-//            _database = _client.GetDatabase("TailorDb");
-//            var collection = _database.GetCollection<Product>("Product");
-//            //var document = new Product() {
-//            //    Description = product.Description,
-//            //    IsAcive = product.IsAcive,
-//            //    FromAmout = product.FromAmout,
-//            //    //ToAmout = product.ToAmout,
-//            //    ImageUrl= product.ImageUrl,
-//            //    ProductCategory= product.ProductCategory
-//            //};
-//            collection.InsertOne(product);
-//        } catch (Exception ex) {
-
-//            throw;
-//        }
-
-//    }
-
-//    public void DropDatabase(string name, CancellationToken cancellationToken = default(CancellationToken)) {
-//        throw new NotImplementedException();
-//    }
-
-//    public Task DropDatabaseAsync(string name, CancellationToken cancellationToken = default(CancellationToken)) {
-//        throw new NotImplementedException();
-//    }
-
-//    public IMongoDatabase GetDatabase(string name, MongoDatabaseSettings settings = null) {
-//        throw new NotImplementedException();
-//    }
-
-//    public IAsyncCursor<BsonDocument> ListDatabases(CancellationToken cancellationToken = default(CancellationToken)) {
-//        throw new NotImplementedException();
-//    }
-
-//    public Task<IAsyncCursor<BsonDocument>> ListDatabasesAsync(CancellationToken cancellationToken = default(CancellationToken)) {
-//        throw new NotImplementedException();
-//    }
-//}

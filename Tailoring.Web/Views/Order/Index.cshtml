@@ -35,29 +35,29 @@
             $('.productOption').hide();
             $('#' + this.name).show();
         });
-        // $("div.productOption").first().addClass('current').show();
-        //$("#next").click(function () {
-        //    $('.productOption').hide();
-        //    $("div.productOption").next().show();
-        //});
-        //$("#back").click(function () {
-        //    $('.productOption').hide();
-        //    $("div.productOption").before().show();
-        //});
-        //function updateItems(delta) {
-        //    debugger;
-        //    var $items = $('.productoptionlist').children('div');
-        //    var $current = $items.filter('.selected');
-        //    $current = $current.length ? $current : $items.first();
-        //    var index = $current.index() + delta;
-        //    // Range check the new index
-        //    index = (index < 0) ? 0 : ((index > $items.length) ? $items.length : index);
-        //    $current.removeClass('selected');
-        //    $current = $items.eq(index).addClass('selected');
-        //    // Hide/show the next/prev
-        //    $("#back").toggle(!$current.is($items.first()));
-        //    $("#next").toggle(!$current.is($items.last()));
-        //}
+         $("div.productoption").first().addclass('current').show();
+        $("#next").click(function () {
+            $('.productoption').hide();
+            $("div.productoption").next().show();
+        });
+        $("#back").click(function () {
+            $('.productoption').hide();
+            $("div.productoption").before().show();
+        });
+        function updateitems(delta) {
+            debugger;
+            var $items = $('.productoptionlist').children('div');
+            var $current = $items.filter('.selected');
+            $current = $current.length ? $current : $items.first();
+            var index = $current.index() + delta;
+            // range check the new index
+            index = (index < 0) ? 0 : ((index > $items.length) ? $items.length : index);
+            $current.removeclass('selected');
+            $current = $items.eq(index).addclass('selected');
+            // hide/show the next/prev
+            $("#back").toggle(!$current.is($items.first()));
+            $("#next").toggle(!$current.is($items.last()));
+        }
         //$("#next").click(function () {
         //    updateitems(1);
         //});
