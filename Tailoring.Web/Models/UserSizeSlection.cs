@@ -6,6 +6,6 @@ namespace Tailoring.Web.Models {
         public UserSizeSlection() {
             ProductOptions = new List<ProductOption>();
         }
-        public IList<ProductOption> ProductOptions { get; set; }
+        public List<ProductOption> ProductOptions { get; set; }
     }
 }

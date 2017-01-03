@@ -1,4 +1,4 @@
-﻿
+﻿@model  Tailoring.Models.RequestOrder
 @{
     ViewBag.Title = "Preview";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,14 +9,27 @@
 <div class="container container_fixed inner_contnr container_fixed_prv" id="order-preview">
     <div class="col-lg-11 prodct_prvw_main" style="float: none; margin:0 auto; margin-top:10px;background-color:white;border:1px solid grey;">
         <div class="col-lg-12 prodct_prvw_head">
-            #ODR115889 | Kurta | <span style="font-weight:normal; font-size:14px;">Product ID: UTP6</span>
+            #@Model.Product.Abbreviation@Model.OrderNumber | @Model.Product.Description | <span style="font-weight:normal; font-size:14px;">Product ID: UTP6</span>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height:auto; padding:15px 0px 15px 0px;">
 
             <div class="col-lg-4 prct_prvw_innr">
                 <div class="col-lg-12 prct_prvw_innr_hed">Main</div>
 
-                <div class="col-lg-12 prct_prvw_innr_cnt">
+
+                @foreach (var item in Model.ProductOptions) {
+                    <div class="col-lg-12 prct_prvw_innr_cnt">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.OptionType</div>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src=@item.ImageUrl></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.Description</div>
+                        </div>
+                    </div>
+                }
+
+                @*<div class="col-lg-12 prct_prvw_innr_cnt">
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">FRONT</div>
                     </div>
@@ -24,44 +37,16 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC52.png"></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Deep Sweetheart neck</div>
                     </div>
-                </div>
+                </div>*@
+
+               
 
                 <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">BACK</div>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC55.png"></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Drop shaped keyhole</div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">SLEEVE</div>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC72.png"></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">3/4th sleeves</div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">HEMLINE</div>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC94.png"></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Above knee length Kurta</div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Instructions : &nbsp; &nbsp; asdf asdf asdf asdf asdf </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Instructions : &nbsp; &nbsp; @Model.Instructions </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 prct_prvw_innr">
+            @*<div class="col-lg-4 prct_prvw_innr">
                 <div class="col-lg-12 prct_prvw_innr_hed">Extras</div>
                 <div class="col-lg-12 prct_prvw_innr_cnt">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
@@ -140,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="col-lg-4 prct_prvw_innr" style=" border:none">
                 <div class="col-lg-12 prct_prvw_innr_hed">Price</div>
                 <div class="col-lg-12 prct_prvw_innr_cnt" style="border:none;">
