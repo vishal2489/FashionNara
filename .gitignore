@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/config
+/Tailoring.Business/bin/Debug
+/Tailoring.Business/obj/Debug
+/Tailoring.Data/obj/Debug
+/Tailoring.Data/bin/Debug
+/Tailoring.DependencyResolver/obj/Debug
+/Tailoring.DependencyResolver/bin/Debug
+/Tailoring.Models/obj/Debug
+/Tailoring.Models/bin/Debug
+/Tailoring.Web/bin
+/Tailoring.Web/obj/Debug/edmxResourcesToEmbed/Models

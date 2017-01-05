@@ -245,6 +245,7 @@
       <LastGenOutput>TestContext.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\Images\CapSleeve_Sleeve.png" />
+    <Content Include="Resources\Images\Closing_Add1.png" />
     <Content Include="Resources\Images\Kurta_home.jpg" />
     <Content Include="Resources\Images\MidThighLength_Hemline.png" />
     <Content Include="Resources\Images\RoundVNeck.png" />

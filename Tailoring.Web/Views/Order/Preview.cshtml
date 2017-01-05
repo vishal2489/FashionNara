@@ -18,115 +18,59 @@
 
 
                 @foreach (var item in Model.ProductOptions) {
-                    <div class="col-lg-12 prct_prvw_innr_cnt">
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.OptionType</div>
+                    if (!item.OptionType.ToLower().Equals("add-ons")) {
+                        <div class="col-lg-12 prct_prvw_innr_cnt">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.OptionType</div>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src=@item.ImageUrl></div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.Description</div>
+                            </div>
                         </div>
-                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src=@item.ImageUrl></div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">@item.Description</div>
-                        </div>
-                    </div>
+                    } 
+
                 }
 
                 @*<div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">FRONT</div>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC52.png"></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Deep Sweetheart neck</div>
-                    </div>
-                </div>*@
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">FRONT</div>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center;">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;"><img style="max-height:70px;" src="/resources/images/UTC52.png"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Deep Sweetheart neck</div>
+                        </div>
+                    </div>*@
 
-               
+
 
                 <div class="col-lg-12 prct_prvw_innr_cnt">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;font-size: 14px;">Instructions : &nbsp; &nbsp; @Model.Instructions </div>
                 </div>
             </div>
 
-            @*<div class="col-lg-4 prct_prvw_innr">
+            <div class="col-lg-4 prct_prvw_innr">
                 <div class="col-lg-12 prct_prvw_innr_hed">Extras</div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Closing</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Back with Zip</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 25/-
+               
+                @foreach (var item in Model.ProductOptions) {
+                    if (item.OptionType.ToLower().Equals("add-ons")) {
+                        <div class="col-lg-12 prct_prvw_innr_cnt">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
+                                <b>@item.Group</b> @*value like closing*@
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">@item.Description</div>
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
+                                    Rs. @item.Amount/-
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Placket</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Quarter Length</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 0/-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>TopLining</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Pre-washed Cotton</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 100/-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Others</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Side Pocket</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 25/-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Others</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Tassels with Neck Ties</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 30/-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Others</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Binding on Neckline and Sleeves</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 50/-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 prct_prvw_innr_cnt">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;margin-bottom:10px;">
-                        <b>Others</b>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding: 0px;">Hemming for Dupatta</div>
-                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="text-align:right;">
-                            Rs. 50/-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-            <div class="col-lg-4 prct_prvw_innr" style=" border:none">
+                    }
+                }
+
+            </div>
+
+            <div class="col-lg-4 prct_prvw_innr" style="border:none">
                 <div class="col-lg-12 prct_prvw_innr_hed">Price</div>
                 <div class="col-lg-12 prct_prvw_innr_cnt" style="border:none;">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0">
