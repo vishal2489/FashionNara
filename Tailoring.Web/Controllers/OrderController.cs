@@ -28,6 +28,7 @@ namespace Tailoring.Web.Controllers {
             var product = _navigation.Products.Find(x => x.Id == id);
             var lastOder = _orderHandler.GetAll().OrderByDescending(x => x.OrderNumber).FirstOrDefault();
             _userSession.CurrentRequestOrder.Product = product;
+            _userSession.CurrentRequestOrder.BaseAmount = product.FromAmout;
             _userSession.CurrentRequestOrder.OrderNumber = lastOder != null ? lastOder.OrderNumber + 1 : 1;
             Session["userSession"] = _userSession;
             var productOptions = _navigation.ProductOptions.Where(X => X.ProductId == id).ToList();
@@ -39,6 +40,7 @@ namespace Tailoring.Web.Controllers {
             _userSession = (IUserSession)Session["userSession"];
             // _userSession.CurrentRequestOrder.Product =  //_userSession.SelectedProduct;
             _userSession.CurrentRequestOrder.ProductOptions = collection;
+            _userSession.CurrentRequestOrder.AddOnAmount = collection.Where(x => x.OptionType.ToLower().Equals("add-ons")).Sum(x => x.Amount);
             Session["userSession"] = _userSession;
             ////_userSession.CurrentRequestOrder.ProductOptions = collection.
             return RedirectToAction("Preview");
@@ -47,6 +49,7 @@ namespace Tailoring.Web.Controllers {
 
         public ActionResult Preview() {
             _userSession = (IUserSession)Session["userSession"];
+            _userSession.CurrentRequestOrder.TotalAmount = _userSession.CurrentRequestOrder.AddOnAmount + _userSession.CurrentRequestOrder.BaseAmount;
             return View(_userSession.CurrentRequestOrder);
         }
 
