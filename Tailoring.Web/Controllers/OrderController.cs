@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -41,18 +42,30 @@ namespace Tailoring.Web.Controllers {
             // _userSession.CurrentRequestOrder.Product =  //_userSession.SelectedProduct;
             _userSession.CurrentRequestOrder.ProductOptions = collection;
             _userSession.CurrentRequestOrder.AddOnAmount = collection.Where(x => x.OptionType.ToLower().Equals("add-ons")).Sum(x => x.Amount);
+            _userSession.CurrentRequestOrder.TotalAmount = _userSession.CurrentRequestOrder.AddOnAmount + _userSession.CurrentRequestOrder.BaseAmount;
             Session["userSession"] = _userSession;
             ////_userSession.CurrentRequestOrder.ProductOptions = collection.
-            return RedirectToAction("Preview");
+            //return RedirectToAction("Preview");
+            return RedirectToAction("SignUp", "User");
         }
 
 
         public ActionResult Preview() {
             _userSession = (IUserSession)Session["userSession"];
-            _userSession.CurrentRequestOrder.TotalAmount = _userSession.CurrentRequestOrder.AddOnAmount + _userSession.CurrentRequestOrder.BaseAmount;
             return View(_userSession.CurrentRequestOrder);
         }
 
+        public ActionResult ScheduleVisit() {
+            _userSession = (IUserSession)Session["userSession"];
+            var timeslots= Enum.GetValues(typeof(TimeSlot)).Cast<TimeSlot>().ToList().Select(x=> new SelectListItem() {Text=x.ToString(), Value=x.ToString() }).ToList<SelectListItem>();
+            ViewBag.TimeSlots = timeslots;
+            return View(_userSession.CurrentRequestOrder);
+        }
 
-    }
+        [HttpPost]
+        public ActionResult ScheduleVisit(RequestOrder requestOrder) {
+            return View(requestOrder);
+        }
+
+        }
 }

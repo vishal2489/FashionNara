@@ -11,6 +11,7 @@ namespace Tailoring.Models {
         public int OrderNumber { get; set; }
         public Product Product { get; set; }
         public List<ProductOption> ProductOptions { get; set; }
+        public string VisitAddress { get; set; }
         public string Instructions { get; set; }
         public RequestState State { get; set; }
         public TimeSlot TimeSlotId { get; set; }

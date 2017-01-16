@@ -1,0 +1,19 @@
+﻿@model Nullable<System.DateTime>
+@*<link rel="stylesheet" href='/content/pikaday/css/pikaday.css' />
+<script src='/content/pikaday/moment.min.js'></script>
+<script src='/content/pikaday/pikaday.js'></script>
+<script src="/content/pikaday/plugins/pikaday.jquery.js"></script>*@
+<link href="~/Content/Pikaday/pikaday.css" rel="stylesheet" />
+<script src="~/Scripts/Pikaday/pikaday.js"></script>
+
+<script type="text/javascript">
+   $(function () {
+       $('.datepicker').pikaday({
+           firstDay: 1,
+           format: "DD MMM YYYY"
+       });
+
+   });
+</script>
+
+@Html.TextBox(string.Empty, ViewData.TemplateInfo.FormattedModelValue, new { @class = "datepicker form-control" })
