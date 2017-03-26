@@ -99,7 +99,7 @@
                                     <a href="#">
                                         <img class="click_img" style="width:100%; height:auto;" name="[@j].ProductOptions[@i].Id" src=@Model[j].ProductOptions[i].ImageUrl alt="Generic placeholder image">
                                         @Html.HiddenFor(m => m[j].ProductOptions[i].Id)
-                                        @Html.CheckBoxFor(m => m[j].ProductOptions[i].IsSelected, new { style = "display:none", id = "[" + j + "].ProductOptions[" + i + "].IsSelected" })
+                  not                      @Html.CheckBoxFor(m => m[j].ProductOptions[i].IsSelected, new { style = "display:none", id = "[" + j + "].ProductOptions[" + i + "].IsSelected" })
                                     </a>
                                     <div class="clickimg" data-id=@Model[j].ProductOptions[i].Id style="display:none">
                                         <img style="border:none" src="/Resources/Images/select_itm.png">

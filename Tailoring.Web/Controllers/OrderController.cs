@@ -57,7 +57,7 @@ namespace Tailoring.Web.Controllers {
 
         public ActionResult ScheduleVisit() {
             _userSession = (IUserSession)Session["userSession"];
-            var timeslots= Enum.GetValues(typeof(TimeSlot)).Cast<TimeSlot>().ToList().Select(x=> new SelectListItem() {Text=x.ToString(), Value=x.ToString() }).ToList<SelectListItem>();
+            var timeslots = Enum.GetValues(typeof(TimeSlot)).Cast<TimeSlot>().ToList().Select(x => new SelectListItem() { Text = x.ToString(), Value = x.ToString() }).ToList<SelectListItem>();
             ViewBag.TimeSlots = timeslots;
             return View(_userSession.CurrentRequestOrder);
         }
@@ -67,5 +67,5 @@ namespace Tailoring.Web.Controllers {
             return View(requestOrder);
         }
 
-        }
+    }
 }
